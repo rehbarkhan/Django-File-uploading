@@ -1,0 +1,30 @@
+{% extends 'webapp/base.html' %}
+{% block title %} Django {% endblock title %}
+{% block body %}
+  <div class="container">
+    <h3>Hello this page is getting render using Django Template </h3>
+  </div>
+  <br>
+  <div class="container">
+    <form action='upload/' method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="text" name="file_name" placeholder="File Name" />
+      <input type="file" name='upload_file'/>
+      <input type="submit" value='upload file'>
+    </form>
+  </div>
+  <br>
+  <div class="container">
+    {% if object_model %}
+  <table class="table table-dark">
+    {% for obj in object_model %}
+    <tr>
+      <td>{{obj.name}}</td>
+      <td><img src="{{ obj.emp_image.url }}" width="100" height="100"/></td>
+    </tr>
+    
+    {% endfor %}
+  </table>
+  {% endif %}
+  </div>
+{% endblock body %}
